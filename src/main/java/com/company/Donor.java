@@ -1,4 +1,4 @@
-package com.codecool;
+package com.company;
 
 public class Donor extends Person {
 

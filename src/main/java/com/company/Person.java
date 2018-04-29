@@ -1,4 +1,4 @@
-package com.codecool;
+package com.company;
 
 public abstract class Person {
 
