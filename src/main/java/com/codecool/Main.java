@@ -1,4 +1,4 @@
-package com.company;
+package com.codecool;
 
 public class Main {
 

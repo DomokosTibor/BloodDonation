@@ -1,4 +1,4 @@
-package com.company;
+package com.codecool;
 
 import java.util.ArrayList;
 import java.util.HashMap;
