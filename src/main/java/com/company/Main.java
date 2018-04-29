@@ -1,5 +1,12 @@
 package com.company;
 
+import com.company.CustomException.ExceptionEventFull;
+import com.company.CustomException.ExceptionTooYoung;
+import com.company.CustomException.ExceptionUnexpectedClass;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,10 +17,6 @@ public class Main {
         Doctor doc2 = new Doctor("Dr. Who");
         Doctor doc3 = new Doctor("Dr. Bones");
         Doctor doc4 = new Doctor("Dr. John");
-        even1.addPersonToEvent(doc1);
-        even1.addPersonToEvent(doc2);
-        even1.addPersonToEvent(doc3);
-//        even1.addPersonToEvent(doc4);
 
         Donor d1 = new Donor("Ági",1980,6, 1001, "agi@valami.hu");
         Donor d2 = new Donor("Béla",2010,5 ,1002, "bela@valami.hu");
@@ -22,13 +25,25 @@ public class Main {
         Donor d5 = new Donor("Emilia",1982, 2,1005, "emilia@valami.hu");
         Donor d6 = new Donor("Ferenc",1985, 1,1006, "ferenc@valami.hu");
 
+        List<Person> justForTheLoop = new ArrayList<>();
+        justForTheLoop.add(doc1);
+        justForTheLoop.add(doc2);
+        justForTheLoop.add(doc3);
+        justForTheLoop.add(d1);
+        justForTheLoop.add(d2);
+        justForTheLoop.add(d3);
+        justForTheLoop.add(d4);
+        justForTheLoop.add(d5);
+        justForTheLoop.add(d6);
+
         System.out.println("\nREGISTRATION PROCESS:\n");
-        even1.addPersonToEvent(d1);
-        even1.addPersonToEvent(d2);
-        even1.addPersonToEvent(d3);
-        even1.addPersonToEvent(d4);
-        even1.addPersonToEvent(d5);
-        even1.addPersonToEvent(d6);
+        for (int i=0; i<justForTheLoop.size(); i++) {
+            try {
+                even1.addPersonToEvent(justForTheLoop.get(i));
+            } catch (ExceptionTooYoung | ExceptionEventFull | ExceptionUnexpectedClass e) {
+                System.out.println(e);
+            }
+        }
 
         System.out.println("\n******************************\n");
         doc1.takeBlood(even1, d1);

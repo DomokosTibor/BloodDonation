@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.CustomException.ExceptionNumberOutOfLimit;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -35,15 +37,15 @@ public class Doctor extends Person {
         try {
             Scanner sc = new Scanner(System.in);
             int temp = sc.nextInt();
-            if (temp < 1) throw new Exception("Number is too LOW");
-            else if (temp > 5) throw new Exception("Number is too HIGH");
+            if (temp < 1) throw new ExceptionNumberOutOfLimit("Number is too LOW");
+            else if (temp > 5) throw new ExceptionNumberOutOfLimit("Number is too HIGH");
             else getBloodQuantity = temp;
         }
         catch (InputMismatchException e) {
             System.out.println("I was not an integer. Please try again.");
             howMuchBlood(d);
         }
-        catch (Exception e) {
+        catch (ExceptionNumberOutOfLimit e) {
             System.out.println("Default value (" + getBloodQuantity + ") will be used. The reason is: " + e);
         }
     }

@@ -1,5 +1,9 @@
 package com.company;
 
+import com.company.CustomException.ExceptionEventFull;
+import com.company.CustomException.ExceptionTooYoung;
+import com.company.CustomException.ExceptionUnexpectedClass;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +22,7 @@ public class BloodDonationEvent {
         this.duration = duration;
     }
 
-    public void addPersonToEvent(Person p) {
+    public void addPersonToEvent(Person p) throws ExceptionTooYoung, ExceptionEventFull, ExceptionUnexpectedClass {
         if (p instanceof Doctor) personListOnEvent.add(p);
         else if (p instanceof Donor) {
             if (isThereFreePlaces()) {
@@ -26,11 +30,11 @@ public class BloodDonationEvent {
                     personListOnEvent.add(p);
                     System.out.println(((Donor) p).getName() + " registered as a donor");
                 }
-                else System.out.println("Sorry " + ((Donor) p).getName() + ", you are under 14.");
+                else throw new ExceptionTooYoung("Registration not allowed under 14 years old persons.");
             }
-            else System.out.println("Sorry " + ((Donor) p).getName() + ", no more free places available.");
+            else throw new ExceptionEventFull("No more free places available");
         }
-        else System.out.println("Unexpected person class");
+        else throw new ExceptionUnexpectedClass("Unexpected person class");
     }
 
     private boolean canDonorReg(Donor p) {
